@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Döviz Kurları ve Altın Bilgileri</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/x-icon" href="currency.ico">
+</head>
+<body>
+
+    <div class="border rounded p-3 container mt-4">
+        <h1 class="mb-4">Döviz Kurları ve Altın Bilgileri</h1>
+        <p id="date-info" style="font-weight: bold;color: red;font-size: 17px;"></p>
+        <div id="currencyConverter" class="border rounded p-3 mt-4">
+            <h2>Döviz ve Altın Çevirici</h2>
+        </div>
+        <!-- Döviz Kurları -->
+        <div id="currencyInfo" class="border rounded p-3 mt-4">
+            <h2>Döviz Kurları</h2>
+            <table class="table table-striped" id="currency-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Para Birimi</th>
+                        <th scope="col">Alış</th>
+                        <th scope="col">Satış</th>
+                        <th scope="col">Banknote Alış</th>
+                        <th scope="col">Banknote Satış</th>
+                    </tr>
+                </thead>
+                <tbody id="currencyTableBody">
+                    <!-- Döviz kurları dinamik olarak burada listelenecek -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Altın Bilgileri -->
+        <div id="goldInfo" class="border rounded p-3 mt-4">
+            <h2>Altın Bilgileri</h2>
+            <div id="goldDetails">
+                <!-- Altın bilgileri dinamik olarak burada gösterilecek -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.1.1/build/global/luxon.min.js"></script>
+    <script src="enums.js" type="text/javascript"></script>
+    <script src="currency.js" type="text/javascript"></script>
+    <script src="dataRetriever.js" type="text/javascript"></script>
+    <script src="programme.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>

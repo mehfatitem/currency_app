@@ -1,0 +1,16 @@
+class Programme {
+    constructor() {
+        const dataRetriever = new DataRetriever('/currencyData');
+
+        new CurrencyConverter("currencyConverter");
+
+        dataRetriever.fetchData()
+            .then(data => {
+                dataRetriever.displayCurrencyData(data.currencyData);
+                dataRetriever.displayGoldData(data.goldData);
+            })
+            .catch(err => {
+                console.error('Currency data retrieval error:', err);
+            });
+    }
+}
