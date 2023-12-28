@@ -34,7 +34,7 @@ class TCMBCurrencyDataProvider extends ICurrencyDataProvider {
         let suffix =
             type !== 'currency'
                 ? currentHour <= 10 ? '-1000.xml'
-                  : currentHour < 15 ? `-${(currentHour - 10) * 1000}.xml`
+                  : currentHour < 15 ? `-${currentHour}00.xml`
                   : '-1500.xml'
                 : '.xml';
 
