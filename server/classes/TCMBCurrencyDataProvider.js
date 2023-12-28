@@ -9,8 +9,6 @@ class TCMBCurrencyDataProvider extends ICurrencyDataProvider {
         super();
         this.baseURL = baseURL;
         this.previous = 0;
-        this.currentDate = this.getCurrentDate();
-        this.requestedDate = this.getRequestedDate();
     }
 
     getCurrentDate() {

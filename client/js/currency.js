@@ -4,6 +4,55 @@ class CurrencyConverter {
         this.init();
     }
 
+    TLToText(amount) {
+        const fullPart = Math.floor(amount);
+        const pennyPart = Math.round((amount - fullPart) * 100);
+
+        function numberToText(number) {
+            const digits = ['', 'Bir', 'İki', 'Üç', 'Dört', 'Beş', 'Altı', 'Yedi', 'Sekiz', 'Dokuz'];
+            const tens = ['', 'On', 'Yirmi', 'Otuz', 'Kırk', 'Elli', 'Altmış', 'Yetmiş', 'Seksen', 'Doksan'];
+
+            let text = '';
+
+            if (number >= 1000 && number <= 999999) {
+                text += `${numberToText(Math.floor(number / 1000))} Bin `;
+                number %= 1000;
+            }
+
+            if (number >= 100) {
+                text += `${digits[Math.floor(number / 100)]} Yüz `;
+                number %= 100;
+            }
+
+            if (number >= 10) {
+                text += `${tens[Math.floor(number / 10)]} `;
+                number %= 10;
+            }
+
+            if (number > 0) {
+                text += `${digits[number]} `;
+            }
+
+            return text.trim();
+        }
+
+        function pennyToText(penny) {
+            if (penny === 0) {
+                return '';
+            } else {
+                return `${numberToText(penny)} Kuruş`;
+            }
+        }
+
+        let text = `${numberToText(fullPart)} Lira`;
+
+        if (pennyPart !== 0) {
+            text += `, ${pennyToText(pennyPart)}`;
+        }
+
+        return `${text.charAt(0).toUpperCase()}${text.slice(1)} Türk Lirası`;
+    }
+
     init() {
         const selectElement = this.createSelectElement();
         const amountInput = this.createAmountInput();
@@ -106,7 +155,7 @@ class CurrencyConverter {
                             const unitPrice = parseFloat(info.alis.replace(",", "."));
                             result = parseFloat(amount) * unitPrice;
                         }
-                        this.displayResult(`Sonuç : <b>${result}</b> TL`);
+                        this.displayResult(`Sonuç : <b>${result}</b> TL (<b>${this.TLToText(result)}</b>)`);
                     }
                 } catch (ex) {
                     this.showAlert("HATA!", `${ex.message} \r\n ${ex.stack}`, "error");
