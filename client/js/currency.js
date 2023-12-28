@@ -71,24 +71,7 @@ class CurrencyConverter {
 
         return `${text.charAt(0).toUpperCase()}${text.slice(1)} Türk Lirası`;
     }
-
-        function pennyToText(penny) {
-            if (penny === 0) {
-                return '';
-            } else {
-                return `${numberToText(penny)} Kuruş`;
-            }
-        }
-
-        let text = `${numberToText(fullPart)} Lira`;
-
-        if (pennyPart !== 0) {
-            text += `, ${pennyToText(pennyPart)}`;
-        }
-
-        return `${text.charAt(0).toUpperCase()}${text.slice(1)} Türk Lirası`;
-    }
-
+    
     init() {
         const selectElement = this.createSelectElement();
         const amountInput = this.createAmountInput();
