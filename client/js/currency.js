@@ -20,17 +20,20 @@ class CurrencyConverter {
             }
 
             if (number >= 1000000) {
-                text += `${numberToText(Math.floor(number / 1000000))} Milyon `;
+                const millions = Math.floor(number / 1000000);
+                text += (millions > 1) ? `${numberToText(millions)} Milyon ` : 'Milyon ';
                 number %= 1000000;
             }
 
             if (number >= 1000) {
-                text += `${numberToText(Math.floor(number / 1000))} Bin `;
+                const thousands = Math.floor(number / 1000);
+                text += (thousands > 1) ? `${numberToText(thousands)} Bin ` : 'Bin ';
                 number %= 1000;
             }
 
             if (number >= 100) {
-                text += `${digits[Math.floor(number / 100)]} Yüz `;
+                const hundreds = Math.floor(number / 100);
+                text += (hundreds > 1) ? `${digits[hundreds]} Yüz ` : 'Yüz ';
                 number %= 100;
             }
 
