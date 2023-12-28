@@ -14,7 +14,17 @@ class CurrencyConverter {
 
             let text = '';
 
-            if (number >= 1000 && number <= 999999) {
+            if (number >= 1000000000) {
+                text += `${numberToText(Math.floor(number / 1000000000))} Milyar `;
+                number %= 1000000000;
+            }
+
+            if (number >= 1000000) {
+                text += `${numberToText(Math.floor(number / 1000000))} Milyon `;
+                number %= 1000000;
+            }
+
+            if (number >= 1000) {
                 text += `${numberToText(Math.floor(number / 1000))} Bin `;
                 number %= 1000;
             }
