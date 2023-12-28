@@ -32,12 +32,17 @@ class TCMBCurrencyDataProvider extends ICurrencyDataProvider {
         const requestedDate = this.getRequestedDate();
         const currentHour = new Date().getHours();
 
-        const suffix =
+
+        let suffix =
             type !== 'currency'
                 ? currentHour <= 10 ? '-1000.xml'
                   : currentHour < 15 ? `-${(currentHour - 10) * 100}.xml`
                   : '-1500.xml'
                 : '.xml';
+
+        if(this.previous > 0 && type === "gold") {
+            suffix = "-1500.xml";
+        }
 
         return `${this.baseURL}${currentDate}/${requestedDate}${suffix}`;
     }
