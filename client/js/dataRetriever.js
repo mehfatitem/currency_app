@@ -7,11 +7,11 @@ class DataRetriever {
         const formattedDate = luxon.DateTime.fromFormat(dateString, 'dd.MM.yyyy');
 
         // Türkçe dilinde gün ve ay adlarını al
-        const gunAdi = formattedDate.setLocale('tr').toLocaleString({ weekday: 'long' });
-        const ayAdi = formattedDate.setLocale('tr').toLocaleString({ month: 'long' });
+        const day = formattedDate.setLocale('tr').toLocaleString({ weekday: 'long' });
+        const month = formattedDate.setLocale('tr').toLocaleString({ month: 'long' });
 
         // Belirtilen formatta tarihi oluştur
-        const formattedString = `${formattedDate.day} ${ayAdi} ${formattedDate.year} ${gunAdi}`;
+        const formattedString = `${formattedDate.day} ${month} ${formattedDate.year} ${day}`;
 
         return formattedString;
     }

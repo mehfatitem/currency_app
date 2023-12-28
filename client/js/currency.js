@@ -76,7 +76,7 @@ class CurrencyConverter {
         let amount = $("#amount").val().trim();
 
         if (amount === null || amount === "") {
-            Swal.fire("UYARI!", "Miktar değeri boş olamaz!", "warning");
+            this.showAlert("UYARI!", "Miktar değeri boş olamaz!", "warning");
             return;
         } else if (amount < 0) {
             amount *= -1;
@@ -96,26 +96,34 @@ class CurrencyConverter {
                 try {
                     let result;
                     if (data.error) {
-                        $("#result").text(`Hata: ${data.error}`);
+                        this.displayResult(`Hata: ${data.error}`);
                     } else {
                         const info = data.info;
                         if (type === "currency") {
                             const forexBuying = parseFloat(info.ForexBuying);
-                            result = parseFloat(amount) * parseFloat(forexBuying);
+                            result = parseFloat(amount) * forexBuying;
                         } else if (type === "gold") {
                             const unitPrice = parseFloat(info.alis.replace(",", "."));
-                            result = parseFloat(amount) * parseFloat(unitPrice);
+                            result = parseFloat(amount) * unitPrice;
                         }
-                        $("#result").html(`Sonuç : <b>${result}</b> TL`);
+                        this.displayResult(`Sonuç : <b>${result}</b> TL`);
                     }
-                } catch(ex) {
-                    Swal.fire("HATA!" , `${ex.message} \r\n ${ex.stack}`, "error");
+                } catch (ex) {
+                    this.showAlert("HATA!", `${ex.message} \r\n ${ex.stack}`, "error");
                 }
             },
             error: (xhr, status, error) => {
                 console.error('Bir hata oluştu:', error);
-                $("#result").text('Bir hata oluştu');
+                this.displayResult('Bir hata oluştu');
             }
         });
+    }
+
+    showAlert(title, message, icon) {
+        Swal.fire(title, message, icon);
+    }
+
+    displayResult(resultText) {
+        $("#result").html(resultText);
     }
 }
