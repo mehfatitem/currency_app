@@ -4,7 +4,7 @@ const path = require('path');
 
 const TCMBCurrencyDataProvider = require('./classes/TCMBCurrencyDataProvider'); // TCMBCurrencyDataProvider sınıfı
 
-const currencyDataProvider = new TCMBCurrencyDataProvider('https://www.tcmb.gov.tr/kurlar/');
+const forexDataProvider = new TCMBCurrencyDataProvider('https://www.tcmb.gov.tr/kurlar/');
 const goldDataProvider = new TCMBCurrencyDataProvider('https://www.tcmb.gov.tr/reeskontkur/');
 
 
@@ -43,22 +43,17 @@ app.get('/getInfoWithCode', async (req, res) => {
     try {
         const { type, code } = req.query;
 
-        let data;
         let info;
 
-        if (type === 'currency') {
-            data = await currencyDataProvider.fetchData('currency');
-            info = currencyDataProvider.getCurrencyInfoByCode(data, code);
-        } else if (type === 'gold') {
-            data = await goldDataProvider.fetchData('gold');
-            info = goldDataProvider.getGoldInfoByCode(data, code);
-        } else {
+        if (type === 'forex')
+            info = await forexDataProvider.getForexInfo(code);
+        else if (type === 'gold') 
+            info = await goldDataProvider.getGoldInfo(code);
+        else
             return res.status(400).json({ error: 'Geçersiz istek' });
-        }
 
-        if (!info) {
+        if (!info) 
             return res.status(404).json({ error: 'Bilgi bulunamadı' });
-        }
 
         return res.status(200).json({ info });
     } catch (error) {
@@ -70,11 +65,11 @@ app.get('/getInfoWithCode', async (req, res) => {
 app.get('/currencyData', async (req, res) => {
     try {
         // Döviz kurları ve altın verilerini al
-        const currencyData = await currencyDataProvider.fetchData('currency');
-        const goldData = await goldDataProvider.fetchData('gold');
+        const forexData = await forexDataProvider.fetchForexData();
+        const goldData = await goldDataProvider.fetchGoldData();
 
         // Verileri JSON formatında gönder
-        res.json({ currencyData, goldData });
+        res.json({ forexData, goldData });
     } catch (error) {
         console.error('İstek sırasında bir hata oluştu:', error);
         res.status(500).json({ error: 'Sunucu hatası' });

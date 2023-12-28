@@ -31,25 +31,25 @@ class DataRetriever {
         });
     }
 
-    displayCurrencyData(currencyData) {
-        if(currencyData == "" || currencyData == undefined) {
+    displayForexData(forexData) {
+        if(forexData == "" || forexData == undefined) {
             Swal.fire("UYARI!" , "Kur bilgileri getirilemedi!" , "warning");
             return;
         }
-        $("#date-info").html(`${this.formatCustomDate(currencyData.Tarih_Date.$.Tarih)} tarihinin kur bilgileridir.`);
-        currencyData.Tarih_Date.Currency.forEach((currency) => {
+        $("#date-info").html(`${this.formatCustomDate(forexData.Tarih_Date.$.Tarih)} tarihinin kur bilgileridir.`);
+        forexData.Tarih_Date.Currency.forEach((forex) => {
             $('#currencyTableBody').append(`
         <tr>
-          <td>${currency.Isim}</td>
-          <td>${currency.ForexBuying ? currency.ForexBuying + ' TL' : ''}</td>
-          <td>${currency.ForexSelling ? currency.ForexSelling + ' TL' : ''}</td>
-          <td>${currency.BanknoteBuying ? currency.BanknoteBuying + ' TL' : ''}</td>
-          <td>${currency.BanknoteSelling ? currency.BanknoteSelling + ' TL' : ''}</td>
+          <td>${forex.Isim}</td>
+          <td>${forex.ForexBuying ? forex.ForexBuying + ' TL' : ''}</td>
+          <td>${forex.ForexSelling ? forex.ForexSelling + ' TL' : ''}</td>
+          <td>${forex.BanknoteBuying ? forex.BanknoteBuying + ' TL' : ''}</td>
+          <td>${forex.BanknoteSelling ? forex.BanknoteSelling + ' TL' : ''}</td>
         </tr>
       `);
         });
 
-        $('#currency-table').DataTable({
+        $('#forex-table').DataTable({
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/tr.json'
             }

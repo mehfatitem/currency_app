@@ -151,7 +151,7 @@ class CurrencyConverter {
             $("#amount").val(amount);
         }
 
-        let type = 'currency';
+        let type = 'forex';
 
         if (selectedCurrency === GoldEnum["22 AYAR GRAM ALTIN"] || selectedCurrency === GoldEnum["24 AYAR GRAM ALTIN"]) {
             type = 'gold';
@@ -167,7 +167,7 @@ class CurrencyConverter {
                         this.displayResult(`Hata: ${data.error}`);
                     } else {
                         const info = data.info;
-                        if (type === "currency") {
+                        if (type === "forex") {
                             const forexBuying = parseFloat(info.ForexBuying);
                             result = parseFloat(amount) * forexBuying;
                         } else if (type === "gold") {

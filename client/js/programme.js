@@ -6,7 +6,7 @@ class Programme {
 
         dataRetriever.fetchData()
             .then(data => {
-                dataRetriever.displayCurrencyData(data.currencyData);
+                dataRetriever.displayForexData(data.forexData);
                 dataRetriever.displayGoldData(data.goldData);
             })
             .catch(err => {
