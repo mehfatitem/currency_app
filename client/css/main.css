@@ -20,3 +20,12 @@
   background-color: #996633; /* Daha koyu kahverengi tonu */
   color: #fff; /* Beyaz renk */
 }
+
+#forex-table td {
+  border: 1px solid #000; /* 1 piksel kalınlığında siyah kenarlık */
+}
+
+#forex-table {
+  border-collapse: collapse; /* Tablo kenarlıklarını birleştir */
+  border: 1px solid #000; /* 1 piksel kalınlığında siyah tablo kenarlığı */
+}

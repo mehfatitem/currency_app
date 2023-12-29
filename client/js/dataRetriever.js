@@ -37,6 +37,7 @@ class DataRetriever {
             return;
         }
         $("#date-info").html(`${this.formatCustomDate(forexData.Tarih_Date.$.Tarih)} tarihinin kur bilgileridir.`);
+
         forexData.Tarih_Date.Currency.forEach((forex) => {
             $('#currencyTableBody').append(`
         <tr>
@@ -49,10 +50,17 @@ class DataRetriever {
       `);
         });
 
-        $('#forex-table').DataTable({
+        if ($.fn.DataTable.isDataTable('#forex-table')) {
+            $('#forex-table').DataTable().destroy();
+        }
+
+        var table = $('#forex-table').DataTable({
             language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/tr.json'
-            }
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/tr.json' // Türkçe dil seçeneği
+            },
+            columnDef: [
+                { type: "float", targets: [1,2,3,4] }
+            ]
         });
     }
 
