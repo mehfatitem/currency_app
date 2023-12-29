@@ -21,7 +21,7 @@ class CurrencyConverter {
 
             if (number >= 1000000) {
                 const millions = Math.floor(number / 1000000);
-                text += (millions > 1) ? `${numberToText(millions)} Milyon ` : 'Milyon ';
+                text +=  `${numberToText(millions)} Milyon `;
                 number %= 1000000;
             }
 
